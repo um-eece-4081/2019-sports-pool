@@ -3,7 +3,30 @@ from django.http import HttpRequest
 
 
 # Create your models here.
-betting_sheets_list = []
+
+class MasterBettingSheet(models.Model):
+    title = models.TextField(blank=False, null=False, default="Week of MM/DD-MM/DD")
+    game_list = []
+    is_published = False
+    is_scored = False
+    game_of_the_week = ""
+
+    def score_games(self, score_pair_list):
+        self.is_scored = True
+        for_counter = 0
+        for game in self.game_list:
+            game.set_score(score_pair_list[for_counter])
+            for_counter = for_counter+1
+
+    def publish(self):
+        self.is_published = True
+
+    def set_game_of_the_week(self, game_number):
+        self.game_of_the_week = game_number
+
+    def edit_sheet(self):
+        for game in self:
+            game.edit_game_info()
 
 
 class Game(models.Model):
@@ -25,44 +48,3 @@ class Game(models.Model):
         self.betting_line = models.IntegerField(null=False, blank=False, default=self.betting_line)
         self.network_name = models.TextField(max_length=10, null=False, blank=False, default=self.network_name)
         self.date_time = models.TextField(max_length=30, null=False, blank=False, default=self.date_time)
-
-
-class MasterBettingSheet(models.Model):
-    title = models.TextField(blank=False, null=False, default="Week of MM/DD-MM/DD")
-
-    def __init__(self):
-        self.game_list = []
-        self.is_published = False
-        self.is_scored = False
-        self.game_of_the_week = ""
-        betting_sheets_list.append(self)
-
-    def score_games(self, score_pair_list):
-        self.is_scored = True
-        for_counter = 0
-        for game in self.game_list:
-            game.set_score(score_pair_list[for_counter])
-            for_counter = for_counter+1
-
-    def publish(self):
-        self.is_published = True
-
-    def set_game_of_the_week(self, game_number):
-        self.game_of_the_week = game_number
-
-    def update_betting_sheets_list(self):
-        betting_sheets_list.pop(self.list_index)
-        betting_sheets_list.insert(self.list_index, self)
-
-    def edit_sheet(self):
-        for game in self:
-            game.edit_game_info()
-
-
-
-
-
-
-
-
-
