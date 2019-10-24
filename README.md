@@ -14,6 +14,8 @@ methods/functions - verb_adjective_noun / verb_noun (i.e. calculate_user_points(
 
 varables - adjective_noun / noun (i.e. weekly_points, winning_team, user, etc.)
 
+constants - ADJECTIVE_NOUN / NOUN (i.e. DEFAULT_ENTRY, EXTRA_POINTS, WEEKLY_WIN_POINTS, HIGH_RISK_POINTS)
+
 **Java:**
 
 classes - AdjectiveNoun / Noun (i.e. User, AdminUser, WeeklyGame, SeasonGame, etc.)
@@ -21,3 +23,5 @@ classes - AdjectiveNoun / Noun (i.e. User, AdminUser, WeeklyGame, SeasonGame, et
 methods/functions - verbAdjectiveNoun / verbNoun (i.e. calcUserPoints(), doSomething(), repeatComputation(), etc.)
 
 variables - adjectiveNoun / noun (i.e. userPoints, weeklyUserPoints, winningTeam, etc.)
+
+constants - ADJECTIVE_NOUN / NOUN (i.e. DEFAULT_ENTRY, EXTRA_POINTS, WEEKLY_WIN_POINTS, HIGH_RISK_POINTS)
