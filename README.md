@@ -6,7 +6,7 @@ This is 2019 implementation of the private sports betting pool.
 In order to best organize your code and make it more readable for others, I will need for yall to use Python standard naming convention.
 I will not approve pull requests unless classes, methods, and variables use the standard naming convetion
 
-Java:
+**Java:**
 
 classes - AdjectiveNoun / Noun (i.e. User, AdminUser, WeeklyGame, SeasonGame, etc.)
 
@@ -14,7 +14,7 @@ methods/functions - verbAdjectiveNoun / verbNoun (i.e. calcUserPoints(), doSomet
 
 variables - adjectiveNoun / noun (i.e. userPoints, weeklyUserPoints, winningTeam, etc.)
 
-Python:
+**Python:**
 
 class - AdjectiveNoun / Noun (i.e. User, AdminUser, WeeklyGame, SeasonGame, etc.)
 
