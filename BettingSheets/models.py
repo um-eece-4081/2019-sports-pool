@@ -21,7 +21,7 @@ class Game(models.Model):
         self.underdog_score = ""
 
     def __str__(self):
-        return self.favorite_team + " VS " + self.underdog_team
+        return self.favorite_team + " VS " + self.underdog_team + ': ' + str(self.betting_sheet)
 
     def set_score(self, score_pair):
         self.favorite_score = score_pair[0]
