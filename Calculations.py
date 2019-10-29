@@ -3,15 +3,17 @@ import User
 #Let's get this bread
 
 
-def calc_Winner(team1Score, team2Score, betLine):
+def calcWinner(team1Score, team2Score, betLine):
     return team1Score > (team2Score + betLine)
 
-def calc_User_Points(userChoice, team1Score, team2Score, betLine):
-    if(userChoice == team1 and calcWinner(team1Score, team2Score, betline)):
+def calcUserPoints(user,userChoice, team1Score, team2Score, betLine):
+    user.userPoint = get_weekly_points()
+    if(userChoice == team1 and calcWinner(team1Score, team2Score, betline) or userChoice == team2 and not calcWinnter(team1Score, team2Score, betline)):
         userPoint += 1
+    user.set_weekly_points(userPoint)
     return userPoint
 
-def user_Bet_Points(SeasonUserWin,UserScore,WeeklyUserWin,SeasonUser,WeeklyUser,WeeklyUserGOWWin,SeasonUserGOWWin): #Basic Point Layout
+def UserBetPoints(SeasonUserWin,UserScore,WeeklyUserWin,SeasonUser,WeeklyUser,WeeklyUserGOWWin,SeasonUserGOWWin): #Basic Point Layout
     if SeasonUser&SeasonUserWin:
         UserScore+1
     else:
