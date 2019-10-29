@@ -1,5 +1,7 @@
+import User
 #The calculations methods will reside here.
 #Let's get this bread
+
 
 def calcWinner(team1Score, team2Score, betLine):
     return team1Score > (team2Score + betLine)
