@@ -12,22 +12,22 @@ def calcUserPoints(userChoice, team1Score, team2Score, betLine):
     return userPoint
 
 def UserBetPoints(SeasonUserWin,UserScore,WeeklyUserWin,SeasonUser,WeeklyUser,WeeklyUserGOWWin,SeasonUserGOWWin): #Basic Point Layout
-    if SeasonUser&SeasonUserWin==True:
+    if SeasonUser&SeasonUserWin:
         UserScore+1
     else:
         UserScore
 
-    if WeeklyUser&WeeklyUserWin==True:
+    if WeeklyUser&WeeklyUserWin:
         UserScore+1
     else:
         UserScore
 
-    if WeeklyUser & WeeklyUserGOWWin == True:
+    if WeeklyUser & WeeklyUserGOWWin:
         UserScore + 2
     else:
         UserScore
 
-    if SeasonUser & SeasonUserGOWWin == True:
+    if SeasonUser & SeasonUserGOWWin:
         UserScore + 2
     else:
         UserScore
