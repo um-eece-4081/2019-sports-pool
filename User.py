@@ -6,17 +6,17 @@ class User:
         self.winston_points = winston_points
         self.user_id = user_id
         self.currentPoints = currentPoints
-    def get_is_winstonCup(self):
-        return
+    def get_is_winston_cup(self):
+        return self.is_winston_cup
     def get_betting_sheet(self):
-        return
+        return self.betting_sheet
     def get_weekly_points(self):
-        return
+        return self.weekly_points
     def get_winston_points(self):
-        return
-    def set_weekly_points(self):
-        return
-    def set_winston_points(self):
-        return
+        return self.winston_points
+    def set_weekly_points(self, we_points):
+        self.weekly_points = w_points
+    def set_winston_points(self, wi_points):
+        self.winston_points = wi_points
     def get_user_id(self):
-        return
+        return self.user_id
