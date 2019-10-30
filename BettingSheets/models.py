@@ -1,44 +1,49 @@
-from django.db import models
-from django.http import HttpRequest
-
+from django.db import models, transaction
+from django.contrib import admin
 # Create your models here.
 
 
 class Game(models.Model):
+    game_of_the_week = models.BooleanField(default=False)
     betting_sheet = models.ForeignKey('MasterBettingSheet', on_delete=models.CASCADE, null=True,
                                       verbose_name='Master Betting Sheet')
-    favorite_team = models.TextField(max_length=4, null=True, blank=False,
+    favorite_team = models.CharField(max_length=20, null=True, blank=False,
                                      verbose_name='Favorite Team')
-    underdog_team = models.TextField(max_length=4, null=True, blank=False,
-                                     verbose_name='Underdog Team')
-    betting_line = models.IntegerField(null=False, blank=False, default=-1)
-    network_name = models.TextField(max_length=10, null=True, blank=False)
+    underdog_team = models.CharField(max_length=20, null=True, blank=False, verbose_name='Underdog Team')
+    favorite_score = models.PositiveIntegerField(null=True, blank=False, default=None)
+    betting_line = models.PositiveIntegerField(null=True, blank=False, default=None)
+    underdog_score = models.PositiveIntegerField(null=True, blank=False, default=None)
+    network_name = models.CharField(max_length=10, null=True, blank=False)
     date_time = models.DateTimeField(null=True)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.favorite_score = ""
-        self.underdog_score = ""
+    def save(self, *args, **kwargs):
+        if not self.game_of_the_week:
+            return super(Game, self).save(*args, **kwargs)
+        with transaction.atomic():
+            Game.objects.filter(game_of_the_week=True).update(game_of_the_week=False)
+            return super(Game, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.favorite_team + " VS " + self.underdog_team + ': ' + str(self.betting_sheet)
-
-    def set_score(self, score_pair):
-        self.favorite_score = score_pair[0]
-        self.underdog_score = score_pair[1]
+        return str(self.favorite_team) + " VS " + str(self.underdog_team)
 
 
 class MasterBettingSheet(models.Model):
-    title = models.TextField(blank=False, null=False, default="Week of MM/DD-MM/DD")
+    is_published = models.BooleanField(editable=False, max_length=10, default='False')
+    is_scored = models.BooleanField(editable=False, null=False, blank=False, default=False)
+    title = models.CharField(max_length=30, editable=True, blank=False, null=False,
+                             default="Week of MM/DD-MM/DD")
 
     def __str__(self):
         return str(self.title)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.is_published = False
-        self.is_scored = False
         self.game_of_the_week = ""
 
-    def publish(self):
-        self.is_published = True
+
+
+
+
+
+
+
