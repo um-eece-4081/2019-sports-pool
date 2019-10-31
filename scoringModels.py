@@ -8,6 +8,3 @@ class User(models.Model):
     winston_points = models.PositiveIntegerField(null=True, blank=False, default=None)
     user_id = models.PositiveIntegerField(null=True, blank=False, default=None)
     currentPoints = models.PositiveIntegerField(null=True, blank=False, default=None)
-
-for user in list:
-    user.get_weekly_points
