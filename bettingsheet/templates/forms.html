@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    table, th, td{
+            border: .25px solid black;
+</style>
+</head>
+<body>
+<form method="post">
+    {%csrf_token%}
+    {{form}}
+    <h1>Week 1 Games:</h1>
+    <table>
+        <tr>
+            <td><center>*Home Team in <b>BOLD</b></center></td>
+            <th></th>
+            <th height=50><h2>Winston Cup Week "1"</h2></th>
+            <th></th>
+            <td><center>*Non Bolded Teams=Visitor</center></td>
+        </tr>
+        <tr>
+            <th>Favorite</th>
+            <th>Line</th>
+            <th>Underdog</th>
+            <th>TV</th>
+            <th>Date/Time(CST)</th>
+        </tr>
+
+         {% for Game in Games %}
+        <tr>
+
+            <td width=30% align="center"><b> {{Game.favorite_team}}</b>  <input id = favorite type="radio" name = {{Game.favorite_team}} ></td>
+            <td align="center">{{Game.betting_line}}</td>
+            <td width=30% align="center"> {{Game.underdog_team}} <input id = underdog type="radio" name = {{Game.favorite_team}}></td>
+            <td align="center">{{Game.network_name}}</td>
+            <td width=20% align="center">{{Game.date_time}}</td>
+
+        </tr>
+        {% endfor %}
+
+
+
+    </table>
+    <table>
+         <tr>
+             <td><b>GAME OF THE WEEK: FLORIDA VS KENTUCKY - (Total Points/Tie Breaker)</b><input type = "text"></td>
+         </tr>
+    </table>
+    <button type = "submit"> Submit </button>
+    </form>
+</body>
+</html>
