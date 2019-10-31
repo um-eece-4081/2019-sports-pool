@@ -1,0 +1,13 @@
+{% extends 'admin/change_form.html' %}
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+{% if original and not original.is_published %}
+    <div class="submit-row">
+            <input type="submit" value="Publish Sheet" name="_publish">
+    </div>
+{% elif original.is_published and not original.is_scored %}
+    <div class="submit-row">
+            <input type="submit" value="Score Betting Sheet" name="_score">
+    </div>
+{% endif %}
+{% endblock %}
