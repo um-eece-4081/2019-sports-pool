@@ -2,8 +2,8 @@ from django.db import models, transaction
 from django.contrib import admin
 # Create your models here.
 
-    
-    
+
+
 
 class Game(models.Model):
     game_of_the_week = models.BooleanField(default=False)
@@ -28,6 +28,12 @@ class Game(models.Model):
     def __str__(self):
         return str(self.favorite_team) + " VS " + str(self.underdog_team)
 
+    def winner(self):
+        if favorite_score > (underdog_score + betting_line):
+            return favorite_team
+        else
+            return underdog_team
+
 
 class MasterBettingSheet(models.Model):
     is_published = models.BooleanField(editable=False, max_length=10, default='False')
@@ -51,8 +57,3 @@ class UserGameSelection(models.Model):
            )
    high_risk = models.BooleanField(editable=False, max_length=10, default='False')
    selected_team =models.CharField(max_length=30, editable=True, blank=False, null=False);
-
-
-
-
-
