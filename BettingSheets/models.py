@@ -2,6 +2,8 @@ from django.db import models, transaction
 from django.contrib import admin
 # Create your models here.
 
+    
+    
 
 class Game(models.Model):
     game_of_the_week = models.BooleanField(default=False)
@@ -41,7 +43,14 @@ class MasterBettingSheet(models.Model):
         self.game_of_the_week = ""
 
 
-
+class UserGameSelection(models.Model):
+   game = models.OneToOneField(
+           Game,
+           on_delete = models.CASCADE,
+           primary_key = True
+           )
+   high_risk = models.BooleanField(editable=False, max_length=10, default='False')
+   selected_team =models.CharField(max_length=30, editable=True, blank=False, null=False);
 
 
 
