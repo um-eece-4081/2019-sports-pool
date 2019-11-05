@@ -21,8 +21,18 @@ class Bettor(AbstractUser):
     def __str__(self):
         return self.get_full_name()
 
-    def get_is_winston_user(self):
-        return self.is_winston_user
+    def score_week(self, wk):
+        sheet = UserSheet.objects.filter(bettor=self, week=wk)
+        score = 0
+        for game in sheet.user_game_selection_set.all():
+            score = score + game.score()
+
+        return score
+
+
+    def score_winston(self):
+        pass
+
 
 class WeeklyScores(models.Model):
     bettor = models.ForeignKey('Bettor', on_delete=models.CASCADE, null=True, verbose_name='Bettor')
@@ -33,7 +43,7 @@ class WeeklyScores(models.Model):
         return "The score of week" + self.week + " for " + self.bettor + "is: " + self.score + " points."
 
 class WinstonScores(models.Model):
-    bettor = models.ForeignKey('Bettor', on_delete=models.CASCADE, null=True, verbose_name='Bettor')
+    bettor = models.OneToOneField('Bettor', on_delete=models.CASCADE, null=True, verbose_name='Bettor')
     overall_score = models.SmallIntegerField()
 
     def __str__(self):

@@ -31,7 +31,7 @@ class Game(models.Model):
     def winner(self):
         if favorite_score > (underdog_score + betting_line):
             return favorite_team
-        else
+        else:
             return underdog_team
 
 
@@ -50,23 +50,32 @@ class MasterBettingSheet(models.Model):
 
 
 class UserGameSelection(models.Model):
-   game = models.OneToOneField(
+    game = models.OneToOneField(
            Game,
            on_delete = models.CASCADE,
            primary_key = True
            )
-   high_risk = models.BooleanField(editable=False, max_length=10, default='False')
-   selected_team =models.CharField(max_length=30, editable=True, blank=False, null=False);
+    high_risk = models.BooleanField(editable=False, max_length=10, default='False')
+    selected_team = models.CharField(max_length=30, editable=True, blank=False, null=False)
+    game_of_the_week_score = models.SmallIntegerField()
 
 
+    #-----------------------
+    #------- TEAM4 ---------
+    #-----------------------
 
-   #------ TEAM4 ----------
-   #-----------------------
-
-   def score(self):
-       if self.selected_team == self.game.winner(): #winner() function will reside in Game
+    def score(self):
+        if self.selected_team == self.game.winner(): #winner() function will reside in Game
            return 1
-       else:
+        else:
+           return 0
+
+    def winston_score(self):
+        if self.selected_team == self.game.winner(): #winner() function will reside in Game
+           return 1
+        elif self.selected_team == self.game.winner():
+            pass
+        else:
            return 0
 
 class Bettor(models.Model):
@@ -83,8 +92,8 @@ class Bettor(models.Model):
         score = 0
         for game in sheet.user_game_selection_set.all():
             score = score + game.score()
-        self.weekly_points = score
+
+        return score
 
     def score_winston(self):
-        if self.is_winston_cup
-        #Do
+        pass
