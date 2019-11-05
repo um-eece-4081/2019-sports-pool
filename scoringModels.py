@@ -10,7 +10,7 @@ class Bettor(models.Model):
     currentPoints = models.PositiveIntegerField(null=True, blank=False, default=None)
 
     def score_week(self, wk):
-        sheet = UserSheet.objects.filter(bettor = self, weeek = wk)
+        sheet = UserSheet.objects.filter(bettor = self, week = wk)
         score = 0
         for game in sheet.user_game_selection_set.all():
             score = score + game.score()
@@ -19,7 +19,7 @@ class Bettor(models.Model):
 
     def score(self):
         real game = self.game
-        if soleteam = winner:
+        if selected_team = winner:
             return 1
         else
             return 0
