@@ -1,6 +1,6 @@
 ## Scoring Betting Sheets
 
-- [] As the System, will assign one point per winning game for the weekly scoring if the user participated in the weekly pool so that they can earn points.
+- [ ] As the System, will assign one point per winning game for the weekly scoring if the user participated in the weekly pool so that they can earn points.
 - [ ] As the System, will assign one point per winning game for the season-long scoring for each User participating in the Winston Cup.
 - [ ] As the System, will assign 2 points for winning the game of the week the weekly scoring if the user participated in the weekly pool so that they can earn points.
 - [ ] As the System, will assign 2 points for winning the game of the week for the season-long scoring for each User participating in the Winston Cup.
