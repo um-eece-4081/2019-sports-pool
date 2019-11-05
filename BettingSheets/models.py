@@ -3,6 +3,8 @@ from django.contrib import admin
 # Create your models here.
 
 
+
+
 class Game(models.Model):
     game_of_the_week = models.BooleanField(default=False)
     betting_sheet = models.ForeignKey('MasterBettingSheet', on_delete=models.CASCADE, null=True,
@@ -26,6 +28,12 @@ class Game(models.Model):
     def __str__(self):
         return str(self.favorite_team) + " VS " + str(self.underdog_team)
 
+    def winner(self):
+        if favorite_score > (underdog_score + betting_line):
+            return favorite_team
+        else
+            return underdog_team
+
 
 class MasterBettingSheet(models.Model):
     is_published = models.BooleanField(editable=False, max_length=10, default='False')
@@ -41,9 +49,42 @@ class MasterBettingSheet(models.Model):
         self.game_of_the_week = ""
 
 
+class UserGameSelection(models.Model):
+   game = models.OneToOneField(
+           Game,
+           on_delete = models.CASCADE,
+           primary_key = True
+           )
+   high_risk = models.BooleanField(editable=False, max_length=10, default='False')
+   selected_team =models.CharField(max_length=30, editable=True, blank=False, null=False);
 
 
 
+   #------ TEAM4 ----------
+   #-----------------------
 
+   def score(self):
+       if self.selected_team == self.game.winner(): #winner() function will reside in Game
+           return 1
+       else
+           return 0
 
+class Bettor(models.Model):
+    #def __init__(self, is_winston_cup, betting_sheet, weekly_points, winston_points, user_id):
+    is_winston_cup = models.BooleanField(default=False)
+    betting_sheet = models.ForeignKey('MasterBettingSheet', on_delete=models.CASCADE, null=True, verbose_name='Master Betting Sheet')
+    weekly_points = models.PositiveIntegerField(null=True, blank=False, default=None)
+    winston_points = models.PositiveIntegerField(null=True, blank=False, default=None)
+    user_id = models.PositiveIntegerField(null=True, blank=False, default=None)
+    currentPoints = models.PositiveIntegerField(null=True, blank=False, default=None)
 
+    def score_week(self, wk):
+        sheet = UserSheet.objects.filter(bettor = self, week = wk)
+        score = 0
+        for game in sheet.user_game_selection_set.all():
+            score = score + game.score()
+
+        return score
+
+    def score_winston(self):
+        #Do
