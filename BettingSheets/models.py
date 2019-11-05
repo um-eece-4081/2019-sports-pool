@@ -86,4 +86,5 @@ class Bettor(models.Model):
         self.weekly_points = score
 
     def score_winston(self):
+        if self.is_winston_cup
         #Do
