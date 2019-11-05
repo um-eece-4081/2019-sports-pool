@@ -1,0 +1,1 @@
+This Folder adds a new cutom user named Bettor. Bettors have data stored with them that tells if they have paid for the week (Gets reset at point calculation every week) or if they have paid for the Winston Cup.

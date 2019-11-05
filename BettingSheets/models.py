@@ -66,7 +66,7 @@ class UserGameSelection(models.Model):
    def score(self):
        if self.selected_team == self.game.winner(): #winner() function will reside in Game
            return 1
-       else
+       else:
            return 0
 
 class Bettor(models.Model):
