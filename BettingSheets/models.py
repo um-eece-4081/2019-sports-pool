@@ -83,8 +83,7 @@ class Bettor(models.Model):
         score = 0
         for game in sheet.user_game_selection_set.all():
             score = score + game.score()
-
-        return score
+        self.weekly_points = score
 
     def score_winston(self):
         #Do
