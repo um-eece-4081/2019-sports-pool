@@ -8,3 +8,18 @@ class Bettor(models.Model):
     winston_points = models.PositiveIntegerField(null=True, blank=False, default=None)
     user_id = models.PositiveIntegerField(null=True, blank=False, default=None)
     currentPoints = models.PositiveIntegerField(null=True, blank=False, default=None)
+
+    def score_week(self, wk):
+        sheet = UserSheet.objects.filter(bettor = self, weeek = wk)
+        score = 0
+        for game in sheet.user_game_selection_set.all():
+            score = score + game.score()
+
+        return score
+
+    def score(self):
+        real game = self.game
+        if soleteam = winner:
+            return 1
+        else
+            return 0
