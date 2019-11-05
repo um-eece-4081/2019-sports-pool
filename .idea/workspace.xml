@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a3a436d-91f2-43a1-be76-8c15deacee40" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/admin/mbs_change_form.html" afterDir="false" />
+    <list default="true" id="766a2f1b-1df2-4b05-a70c-4fc5cd1e93a3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/users/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/managers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BettingSheets/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BettingSheets/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BettingSheets/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BettingSheets/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BettingSheets/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScoringSheet/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ScoringSheet/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_sports_pool/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_sports_pool/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_sports_pool/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_sports_pool/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,19 +20,40 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1SfY6nxIrG8qyTdlpF8cHYHlJCY" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -49,13 +73,18 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9a3a436d-91f2-43a1-be76-8c15deacee40" name="Default Changelist" comment="" />
+      <changelist id="766a2f1b-1df2-4b05-a70c-4fc5cd1e93a3" name="Default Changelist" comment="" />
       <created>1571955944455</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1571955944455</updated>
+      <workItem from="1572973151356" duration="1364000" />
+      <workItem from="1572981298288" duration="246000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -69,5 +98,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
