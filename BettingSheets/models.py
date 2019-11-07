@@ -84,7 +84,6 @@ class Bettor(models.Model):
     betting_sheet = models.ForeignKey('MasterBettingSheet', on_delete=models.CASCADE, null=True, verbose_name='Master Betting Sheet')
     weekly_points = models.PositiveIntegerField(null=True, blank=False, default=None)
     winston_points = models.PositiveIntegerField(null=True, blank=False, default=None)
-    user_id = models.PositiveIntegerField(null=True, blank=False, default=None)
     currentPoints = models.PositiveIntegerField(null=True, blank=False, default=None)
 
     def score_week(self, wk):
@@ -98,4 +97,20 @@ class Bettor(models.Model):
     def score_winston(self):
         pass
 
+class Ranking(models.Model):
+    title = models.CharField(max_length=30, editable=True, blank=False, null=False, default="Week of MM/DD-MM/DD")
+    
+    def __str__(self):
+        return self.title
+    
+    bettor = models.ManyToManyField(
+           Bettor,
+           on_delete = models.CASCADE,
+           primary_key = True
+           )
+    def rank():
+        pass
+        
+            
+        
         
