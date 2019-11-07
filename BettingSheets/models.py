@@ -97,7 +97,7 @@ class Bettor(models.Model):
     def score_winston(self):
         pass
 
-class Ranking(models.Model):
+class Scorer(models.Model):
     title = models.CharField(max_length=30, editable=True, blank=False, null=False, default="Week of MM/DD-MM/DD")
     
     def __str__(self):
