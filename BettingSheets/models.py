@@ -90,10 +90,12 @@ class Bettor(models.Model):
     def score_week(self, wk):
         sheet = UserSheet.objects.filter(bettor = self, week = wk)
         score = 0
-        for game in sheet.user_game_selection_set.all():
+        for game in sheet.UserGameSelection_set.all():
             score = score + game.score()
-
-        return score
+        weekly_points = score
+        
 
     def score_winston(self):
         pass
+
+        
