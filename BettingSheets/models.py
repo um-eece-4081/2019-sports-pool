@@ -78,38 +78,47 @@ class UserGameSelection(models.Model):
         else:
            return 0
 
-class Bettor(models.Model):
-    #def __init__(self, is_winston_cup, betting_sheet, weekly_points, winston_points, user_id):
-    is_winston_cup = models.BooleanField(default=False)
-    betting_sheet = models.ForeignKey('MasterBettingSheet', on_delete=models.CASCADE, null=True, verbose_name='Master Betting Sheet')
-    weekly_points = models.PositiveIntegerField(null=True, blank=False, default=None)
-    winston_points = models.PositiveIntegerField(null=True, blank=False, default=None)
-    currentPoints = models.PositiveIntegerField(null=True, blank=False, default=None)
+class Bettor(AbstractUser):
+    email = models.EmailField(_('email address'), unique=True)
+    # This gets updated if doing the Winston Cup
+    is_winston_user = models.BooleanField(default=False)
+    # This gets updated if doing the weekly game
+    paid_this_week = models.BooleanField(default=False)
+
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = BettorManager()
+
+    def __str__(self):
+        return self.get_full_name()
 
     def score_week(self, wk):
-        sheet = UserSheet.objects.filter(bettor = self, week = wk)
+        sheet = UserSheet.objects.filter(bettor=self, week=wk)
         score = 0
-        for game in sheet.UserGameSelection_set.all():
+        for game in sheet.user_game_selection_set.all():
             score = score + game.score()
-        weekly_points = score
-        
+        return score
+
 
     def score_winston(self):
         pass
 
-class Scorer(models.Model):
-    title = models.CharField(max_length=30, editable=True, blank=False, null=False, default="Week of MM/DD-MM/DD")
-    
+class WeeklyScores(models.Model):
+    bettor = models.ForeignKey('Bettor', on_delete=models.CASCADE, null=True, verbose_name='Bettor')
+    score = models.PositiveSmallIntegerField()
+    week = models.PositiveSmallIntegerField()
+
     def __str__(self):
-        return self.title
-    
-    bettor = models.ManyToManyField(
-           Bettor,
-           on_delete = models.CASCADE,
-           primary_key = True
-           )
-    def rank():
-        pass
+        return "The score of week" + self.week + " for " + self.bettor + "is: " + self.score + " points."
+
+class WinstonScores(models.Model):
+    bettor = models.OneToOneField('Bettor', on_delete=models.CASCADE, null=True, verbose_name='Bettor')
+    overall_score = models.SmallIntegerField()
+
+    def __str__(self):
+        return "The winston score for " + self.bettor + " is: " + self.overall_score + " points."
         
             
         
