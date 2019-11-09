@@ -1,0 +1,7 @@
+Scoring Betting Sheets
+[score_week] one point per winning game for the weekly scoring if the user participated in the weekly pool so that they can earn points.
+[score_week]  2 points for winning the GAME OF WEEK the weekly scoring if the user participated in the weekly pool so that they can earn points.
+[score_winston]  2 points for winning GAME OF WEEK for the season-long scoring for each User participating in the Winston Cup.
+[score_winston] 1 point per winning game for the SEASON-LONG-SCORING for each User participating in the Winston Cup.
+[winner] use the scores as adjusted by the betting line to assign points so that I can assign points.
+[score_tie] use the Weekly Total Points declared by the User as a Tie breaker if there is a tie for the total number of points for the weekly pool where the closet by absolute value is the winner.  If the case of a tie (by total points), the weekly pot is split.

@@ -1,9 +1,12 @@
 from django.db import models, transaction
 from django.contrib import admin
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import ugettext_lazy as _
+from .managers import CustomUserManager
 # Create your models here.
 
-    
-    
+
+
 
 class Game(models.Model):
     game_of_the_week = models.BooleanField(default=False)
@@ -28,6 +31,12 @@ class Game(models.Model):
     def __str__(self):
         return str(self.favorite_team) + " VS " + str(self.underdog_team)
 
+    def winner(self):
+        if favorite_score > (underdog_score + betting_line):
+            return favorite_team
+        else:
+            return underdog_team
+
 
 class MasterBettingSheet(models.Model):
     is_published = models.BooleanField(editable=False, max_length=10, default='False')
@@ -44,15 +53,76 @@ class MasterBettingSheet(models.Model):
 
 
 class UserGameSelection(models.Model):
-   game = models.OneToOneField(
+    game = models.OneToOneField(
            Game,
            on_delete = models.CASCADE,
            primary_key = True
            )
-   high_risk = models.BooleanField(editable=False, max_length=10, default='False')
-   selected_team =models.CharField(max_length=30, editable=True, blank=False, null=False);
+    high_risk = models.BooleanField(editable=False, max_length=10, default='False')
+    selected_team = models.CharField(max_length=30, editable=True, blank=False, null=False)
+    game_of_the_week_score = models.SmallIntegerField()
 
 
+    #-----------------------
+    #------- TEAM4 ---------
+    #-----------------------
+
+    def score(self):
+        if self.selected_team == self.game.winner(): #winner() function will reside in Game
+           return 1
+        else:
+           return 0
+
+    def winston_score(self):
+        if self.selected_team == self.game.winner(): #winner() function will reside in Game
+           return 1
+        elif self.selected_team == self.game.winner():
+            pass
+        else:
+           return 0
+
+class Bettor(AbstractUser):
+    email = models.EmailField(_('email address'), unique=True)
+    # This gets updated if doing the Winston Cup
+    is_winston_user = models.BooleanField(default=False)
+    # This gets updated if doing the weekly game
+    paid_this_week = models.BooleanField(default=False)
 
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
+    objects = BettorManager()
+
+    def __str__(self):
+        return self.get_full_name()
+
+    def score_week(self, wk):
+        sheet = UserSheet.objects.filter(bettor=self, week=wk)
+        score = 0
+        for game in sheet.user_game_selection_set.all():
+            score = score + game.score()
+        return score
+
+
+    def score_winston(self):
+        pass
+
+class WeeklyScores(models.Model):
+    bettor = models.ForeignKey('Bettor', on_delete=models.CASCADE, null=True, verbose_name='Bettor')
+    score = models.PositiveSmallIntegerField()
+    week = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return "The score of week" + self.week + " for " + self.bettor + "is: " + self.score + " points."
+
+class WinstonScores(models.Model):
+    bettor = models.OneToOneField('Bettor', on_delete=models.CASCADE, null=True, verbose_name='Bettor')
+    overall_score = models.SmallIntegerField()
+
+    def __str__(self):
+        return "The winston score for " + self.bettor + " is: " + self.overall_score + " points."
+        
+            
+        
+        
