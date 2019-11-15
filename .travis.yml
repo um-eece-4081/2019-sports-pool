@@ -1,7 +1,4 @@
 language: python
 
-before_script:
-  - composer install --no-interaction
-
 script: 
   - unittest
