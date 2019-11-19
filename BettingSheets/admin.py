@@ -63,7 +63,26 @@ class MasterBettingSheetAdmin(admin.ModelAdmin):
             MasterBettingSheet.objects.filter(pk=mbs.pk).update(is_scored=True)
             self.message_user(request, "Betting Sheet Scored")
         return super().response_change(request, mbs)
-
+    
+    def score(mbs):
+        user_sheets = userbettingsheet.objects.filter(master = mbs)
+        for sheet in user_sheets:
+            score = 0
+            for game in sheet.game_set.all()
+                mbs_game = game.mbs_game
+                Fscore = mbs_game.betting.favorite_score
+                Uscore = mbs_game.underdog_score
+                bettingline = mbs_game.betting_line
+                
+                if Fscore > (Uscore + bettingline) and not game.is_seleected
+                    score = score + 1
+                    
+                if Fscore > (Uscore + bettingline) and game.is_seleected    
+                    score = score + 1
+                    
+        sheet.update(score = score)
+        sheet.bettor.winston_score += score
+        Bettor.object.filter(pk = sheet.bettor.pk)
 
 
 
