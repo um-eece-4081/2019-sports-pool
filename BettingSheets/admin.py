@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import MasterBettingSheet, Game
+from models import userbettingsheet,ubs_game
 
 # Register your models here.
 admin.site.site_header = 'Manage Betting Sheets'
@@ -62,6 +63,8 @@ class MasterBettingSheetAdmin(admin.ModelAdmin):
             MasterBettingSheet.objects.filter(pk=mbs.pk).update(is_scored=True)
             self.message_user(request, "Betting Sheet Scored")
         return super().response_change(request, mbs)
+
+
 
 
 admin.site.register(MasterBettingSheet, MasterBettingSheetAdmin)
