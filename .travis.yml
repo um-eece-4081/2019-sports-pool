@@ -1,4 +1,4 @@
 language: python
 
 script: 
-  - python unittest.py
+  - python -o unittest.py
